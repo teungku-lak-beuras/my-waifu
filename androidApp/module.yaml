@@ -1,0 +1,23 @@
+product: android/app
+
+apply:
+  - //configuration/jvm.module-template.yaml
+
+dependencies:
+  - //core/configuration
+  - //core/model
+  - //core/repository
+  - //shared
+  - $libs.androidx.activity.compose
+  - $compose.preview
+  - $compose.uiTooling
+  - $libs.coil.compose
+  - $libs.coil.network.ktor
+  - $libs.ktor.client.core
+  - $libs.ktor.client.cio
+
+settings:
+  compose: enabled
+  android:
+    namespace: zeef.mywaifu
+    applicationId: zeef.mywaifu

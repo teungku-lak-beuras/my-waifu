@@ -1,0 +1,107 @@
+package zeef.mywaifu.viewmodel
+
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import zeef.mywaifu.model.MyWaifuModelV1
+import zeef.mywaifu.model.MyWaifuModelV2
+import zeef.mywaifu.model.MyWaifuState
+import zeef.mywaifu.repository.MyWaifuRepository
+
+class HomeViewModel(
+    private val myWaifuRepository: MyWaifuRepository
+) : ViewModel() {
+    private val amount: Int = 16
+    private val _waifu = MutableStateFlow<MyWaifuState<List<MyWaifuModelV1>>>(MyWaifuState.Loading)
+    private val _nekosiaCatWaifu = MutableStateFlow<MyWaifuState<List<MyWaifuModelV2>>>(
+        MyWaifuState.Loading
+    )
+
+    val waifu = _waifu.asStateFlow()
+    val nekosiaCatWaifu = _nekosiaCatWaifu.asStateFlow()
+    var isLoadingMore by mutableStateOf (false); private set
+    var isInitialyLoaded by mutableStateOf(false); private set
+
+    init {
+//        getWaifu()
+        getNekosiaCatWaifu()
+    }
+
+    fun getWaifu(amount: Int = this.amount) = viewModelScope.launch {
+        myWaifuRepository.getNetworkWaifu(amount = amount).collect { value ->
+            when (value) {
+                is MyWaifuState.Loading -> {
+                    _waifu.value = value
+                }
+                is MyWaifuState.Success -> {
+                    _waifu.value = value
+                    isInitialyLoaded = true
+                }
+                is MyWaifuState.Error -> {
+                    _waifu.value = value
+                }
+            }
+        }
+    }
+
+    fun getMoreWaifu(amount: Int = this.amount) = viewModelScope.launch {
+        myWaifuRepository.getNetworkWaifu(amount = amount).collect { value ->
+            isLoadingMore = true
+
+            when (value) {
+                is MyWaifuState.Loading -> {}
+                is MyWaifuState.Success -> {
+                    val oldData = (_waifu.value as MyWaifuState.Success).data
+                    val newData = oldData + value.data
+                    _waifu.value = MyWaifuState.Success(data = newData)
+                    isLoadingMore = false
+                }
+                is MyWaifuState.Error -> {
+                    // Should we implement error message when fail to fetch more waifu?
+                    isLoadingMore = false
+                }
+            }
+        }
+    }
+
+    fun getNekosiaCatWaifu(amount: Int = this.amount) = viewModelScope.launch {
+        myWaifuRepository.getNekosiaWaifu(amount = amount).collect{ value ->
+            when (value) {
+                is MyWaifuState.Loading -> {
+                    _nekosiaCatWaifu.value = value
+                }
+                is MyWaifuState.Success -> {
+                    _nekosiaCatWaifu.value = value
+                    isInitialyLoaded = true
+                }
+                is MyWaifuState.Error -> {
+                    _nekosiaCatWaifu.value = value
+                }
+            }
+        }
+    }
+
+    fun getMoreNekosiaCatWaifu(amount: Int = this.amount) = viewModelScope.launch {
+        myWaifuRepository.getNekosiaWaifu(amount = amount).collect { value ->
+            isLoadingMore = true
+
+            when (value) {
+                is MyWaifuState.Loading -> {}
+                is MyWaifuState.Success -> {
+                    val oldData = (_nekosiaCatWaifu.value as MyWaifuState.Success).data
+                    val newData = oldData + value.data
+                    _nekosiaCatWaifu.value = MyWaifuState.Success(data = newData)
+                    isLoadingMore = false
+                }
+                is MyWaifuState.Error -> {
+                    isLoadingMore = false
+                }
+            }
+        }
+    }
+}

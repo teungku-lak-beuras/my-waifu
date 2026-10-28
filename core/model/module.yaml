@@ -1,0 +1,12 @@
+product:
+  type: kmp/lib
+  platforms: [ jvm, android, wasmJs ]
+
+apply:
+  - //configuration/jvm.module-template.yaml
+
+settings:
+  kotlin:
+    serialization:
+      enabled: true
+      version: 1.12.0

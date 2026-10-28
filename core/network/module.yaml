@@ -1,0 +1,22 @@
+product:
+  type: kmp/lib
+  platforms: [ jvm, android, wasmJs ]
+
+apply:
+  - //configuration/jvm.module-template.yaml
+
+dependencies:
+  - //core/configuration
+  - //core/model
+  - $libs.napier
+  - $libs.ktor.client.cio
+  - $libs.ktor.client.core
+  - $libs.ktor.client.logging
+  - $libs.ktor.client.content.negotiation
+  - $libs.ktor.serialization.kotlinx.json
+
+settings:
+  kotlin:
+    serialization:
+      enabled: true
+      version: 1.12.0

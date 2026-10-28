@@ -1,0 +1,10 @@
+modules:
+  - androidApp
+  - core/configuration
+  - core/local
+  - core/model
+  - core/network
+  - core/repository
+  - desktopApp
+  - shared
+  - webApp

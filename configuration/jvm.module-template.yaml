@@ -1,0 +1,7 @@
+settings:
+  jvm:
+    jdk:
+      distributions:
+        - temurin
+      version: 21
+      selectionMode: javaHome

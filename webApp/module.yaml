@@ -1,0 +1,16 @@
+product: wasm-js/app
+
+apply:
+  - //configuration/jvm.module-template.yaml
+
+dependencies:
+  - //core/configuration
+  - //shared
+  - $compose.ui
+  - $libs.napier
+  - $libs.coil.compose
+  - $libs.coil.network.ktor
+  - $libs.ktor.client.core
+
+settings:
+  compose: enabled

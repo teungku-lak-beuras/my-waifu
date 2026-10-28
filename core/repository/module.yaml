@@ -1,0 +1,22 @@
+product:
+  type: kmp/lib
+  platforms: [ android, jvm, wasmJs ]
+
+apply:
+  - //configuration/jvm.module-template.yaml
+
+dependencies:
+  - //core/model
+  - //core/local
+  - //core/network
+  - org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0
+  - $libs.ktor.client.core
+  - $libs.ktor.client.logging
+  - $libs.ktor.client.content.negotiation
+  - $libs.ktor.serialization.kotlinx.json
+
+#settings:
+#  kotlin:
+#    serialization:
+#      enabled: true
+#      version: 1.12.0

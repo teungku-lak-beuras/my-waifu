@@ -1,0 +1,22 @@
+product: jvm/app
+
+apply:
+  - //configuration/jvm.module-template.yaml
+
+dependencies:
+  - //core/configuration
+  - //shared
+  - $compose.desktop.currentOs
+  - $compose.preview
+  - $libs.kotlinx.coroutines.swing
+  - $libs.logback.classic
+  - $libs.napier
+  - $libs.coil.compose
+  - $libs.coil.network.ktor
+  - $libs.ktor.client.cio
+  - $compose.material3
+
+settings:
+  compose: enabled
+  jvm:
+    mainClass: zeef.mywaifu.MainKt

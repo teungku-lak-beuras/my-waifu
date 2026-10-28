@@ -1,0 +1,6 @@
+product:
+  type: kmp/lib
+  platforms: [ jvm, android, wasmJs ]
+
+apply:
+  - //configuration/jvm.module-template.yaml
