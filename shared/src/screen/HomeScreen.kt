@@ -524,7 +524,7 @@ private fun Content(
 fun HomeScreen(
     waifu: MyWaifuState<List<MyWaifuModelV2>>,
     isLoadingMore: Boolean,
-    isInitialyLoaded: Boolean,
+    isInitiallyLoaded: Boolean,
     helpCallback: () -> Unit,
     settingsCallback: () -> Unit,
     aboutCallback: () -> Unit,
@@ -595,7 +595,7 @@ fun HomeScreen(
                     paddingValues = paddingValues,
                     waifu = waifu,
                     isLoadingMore = isLoadingMore,
-                    isInitialyLoaded = isInitialyLoaded,
+                    isInitialyLoaded = isInitiallyLoaded,
                     loadMoreCallback = loadMoreCallback,
                     detailCallback = detailCallback
                 )
@@ -616,7 +616,7 @@ fun HomeScreen(
                     paddingValues = PaddingValues(0.dp),
                     waifu = waifu,
                     isLoadingMore = isLoadingMore,
-                    isInitialyLoaded = isInitialyLoaded,
+                    isInitialyLoaded = isInitiallyLoaded,
                     loadMoreCallback = loadMoreCallback,
                     detailCallback = detailCallback
                 )
@@ -639,7 +639,7 @@ fun HomeScreen(
                     paddingValues = paddingValues,
                     waifu = waifu,
                     isLoadingMore = isLoadingMore,
-                    isInitialyLoaded = isInitialyLoaded,
+                    isInitialyLoaded = isInitiallyLoaded,
                     loadMoreCallback = loadMoreCallback,
                     detailCallback = detailCallback
                 )
@@ -677,7 +677,7 @@ fun HomeScreenPreview() {
             data = getWaifuList()
         ),
         isLoadingMore = true,
-        isInitialyLoaded = true,
+        isInitiallyLoaded = true,
         helpCallback = {},
         settingsCallback = {},
         aboutCallback = {},

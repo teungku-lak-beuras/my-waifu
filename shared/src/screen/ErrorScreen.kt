@@ -10,7 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import org.jetbrains.compose.resources.stringResource
 import zeef.mywaifu.component.MyWaifuPreview
+import zeef.mywaifu.resources.Res
+import zeef.mywaifu.resources.error
 
 @Composable
 fun ErrorScreen(message: String = "Why error? :(") {
@@ -23,7 +26,7 @@ fun ErrorScreen(message: String = "Why error? :(") {
         ) {
             Text(
                 style = MaterialTheme.typography.titleLarge,
-                text = "Error! XD"
+                text = stringResource(Res.string.error)
             )
         }
     }

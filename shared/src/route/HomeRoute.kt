@@ -39,7 +39,7 @@ fun HomeRoute(
                 HomeScreen(
                     waifu = viewModel.nekosiaCatWaifu.collectAsState().value,
                     isLoadingMore = viewModel.isLoadingMore,
-                    isInitialyLoaded = viewModel.isInitialyLoaded,
+                    isInitiallyLoaded = viewModel.isInitialyLoaded,
                     helpCallback = helpCallback,
                     settingsCallback = settingsCallback,
                     aboutCallback = aboutCallback,
